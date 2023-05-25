@@ -55,14 +55,8 @@ function createIcon(classes) {
 
 function addItemToLocalStorage(item) {
 
-  // Simply call getItemsFromLocalStorage to make code DRY
+  // Simply call getItemsFromLocalStorage on line 65 to make code DRY
   const itemsFromStorage = getItemsFromLocalStorage();
-
-//  if (localStorage.getItem('items') === null) {
-//    itemsFromStorage = [];
-//  } else {
-//    itemsFromStorage = JSON.parse(localStorage.getItem('items'));
-//  }
   itemsFromStorage.push(item);
   // Convert to JSON string and set to localStorage
   localStorage.setItem('items', JSON.stringify(itemsFromStorage));
@@ -70,13 +64,11 @@ function addItemToLocalStorage(item) {
 
 function getItemsFromLocalStorage() {
   let itemsFromStorage;
-
   if (localStorage.getItem('items') === null) {
     itemsFromStorage = [];
   } else {
     itemsFromStorage = JSON.parse(localStorage.getItem('items'));
   }
-
   return itemsFromStorage
 }
 
