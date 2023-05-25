@@ -62,6 +62,24 @@ function clearItems() {
     resetUI();
 }
 
+function filterItems(e) {
+  const items = itemList.querySelectorAll('li');
+  const text = e.target.value.toLowerCase();
+
+  items.forEach(item => {
+    // firstChild because the text is the first thing inside the li
+    const itemName = item.firstChild.textContent.toLowerCase();
+
+    // indexOf will check for matches in text. If there are any 
+    // matches, it will return true. If not, it will return -1
+    if (itemName.indexOf(text) != -1) {
+      item.style.display = 'flex'
+    } else {
+      item.style.display = 'none';
+    }
+  });
+}
+
 function resetUI() {
     const items = itemList.querySelectorAll('li');
   // Could add css class instead of none or block
@@ -79,5 +97,6 @@ function resetUI() {
 itemForm.addEventListener('submit', addItem);
 itemList.addEventListener('click', removeItem);
 clearButton.addEventListener('click', clearItems);
+itemFilter.addEventListener('input', filterItems);
 
 resetUI();
