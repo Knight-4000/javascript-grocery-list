@@ -74,7 +74,6 @@ function getItemsFromLocalStorage() {
 
     // Clicking the x targets the parent button, which is the 
     // button, then the parent of that which is the li item and removes it.
-   
 function removeItem(e) {
     if (e.target.parentElement.classList.contains
     ('remove-item')) {
