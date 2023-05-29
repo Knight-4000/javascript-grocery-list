@@ -3,6 +3,8 @@ const itemInput = document.getElementById('item-input');
 const itemList = document.getElementById('item-list');
 const itemFilter = document.getElementById('filter');
 const clearButton = document.getElementById('clear');
+const formButton = itemForm.querySelector('button');
+let isEditMode = false;
 
 function displayItems() {
   const itemsFromStorage = getItemsFromLocalStorage();
@@ -76,8 +78,23 @@ function onClickItem(e) {
   if (e.target.parentElement.classList.contains
     ('remove-item')) {
       removeItem(e.target.parentElement.parentElement);
+    } else {
+      setItemToEdit(e.target)
     }
 
+}
+
+function setItemToEdit(item) {
+  isEditMode = true;
+
+  itemList
+  .querySelectorAll('li')
+  .forEach((i) => i.classList.remove('edit-mode'));
+'/'
+  item.classList.add('edit-mode');
+  formButton.innerHTML = '<i class="fa-solid fa-pen"></i>   Update Item';
+  formButton.style.backgroundColor = '#228B22';
+  itemInput.value = item.textContent;
 }
 
     // Clicking the x targets the parent button, which is the 
