@@ -30,6 +30,11 @@ function onAddItemSubmit(e) {
       itemToEdit.classList.remove('edit-mode');
       itemToEdit.remove();
       isEditMode = false;
+    } else {
+      if (checkIfItemExists(newItem)) {
+        alert('This item already exists');
+        return;
+      }
     }
     addItemToDOM(newItem);
     // Add Item to localStorage
@@ -91,7 +96,11 @@ function onClickItem(e) {
     } else {
       setItemToEdit(e.target)
     }
+}
 
+function checkIfItemExists(item) {
+  const itemsFromStorage = getItemsFromLocalStorage();
+  return itemsFromStorage.includes(item);
 }
 
 function setItemToEdit(item) {
